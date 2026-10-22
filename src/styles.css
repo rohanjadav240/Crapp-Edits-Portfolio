@@ -180,15 +180,15 @@ button {
   transform: scaleX(1)
 }
 
-.burger {
-  display: none
-}
-
 .icon-btn {
   display: grid;
   place-items: center;
   width: 44px;
   height: 44px;
+}
+
+.burger {
+  display: none !important;
 }
 
 /* buttons */
@@ -805,7 +805,7 @@ code {
 /* responsive */
 @media (max-width:860px) {
   .burger {
-    display: grid
+    display: grid !important;
   }
 
   .nav nav {

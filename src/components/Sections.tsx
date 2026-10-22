@@ -87,7 +87,7 @@ export function Portfolio({ open }: { open: (t: string, v?: VideoSource | null) 
       </div>
       <div className="grid">
         {list.map((p, i) => <Card key={p.id} p={p} i={projects.indexOf(p) + 0 * i} open={open} />)}
-        {!list.length && <p className="empty">No projects in this category yet.</p>}
+        {!list.length && <p className="empty">Project is in work...</p>}
       </div>
     </section>
   )
@@ -141,17 +141,21 @@ export function About() {
 export function Contact() {
   const c = site.contact
   const links = [
-    c.instagram && { icon: <Instagram />, label: 'Instagram', href: `https://instagram.com/${c.instagram.replace('@', '')}` },
-    c.whatsapp && { icon: <MessageCircle />, label: 'WhatsApp', href: `https://wa.me/${c.whatsapp.replace(/\D/g, '')}` },
-    c.phone && { icon: <Phone />, label: c.phone, href: `tel:${c.phone.replace(/[^\d+]/g, '')}` },
-    c.email && { icon: <Mail />, label: c.email, href: `mailto:${c.email}` },
+    c.instagram && { icon: <Instagram size={18} />, label: 'Instagram', href: `https://instagram.com/${c.instagram.replace('@', '')}` },
+    c.whatsapp && { icon: <MessageCircle size={18} />, label: 'WhatsApp', href: `https://wa.me/${c.whatsapp.replace(/\D/g, '')}` },
+    c.phone && { icon: <Phone size={18} />, label: c.phone, href: `tel:${c.phone.replace(/[^\d+]/g, '')}` },
+    c.email && { icon: <Mail size={18} />, label: c.email, href: `mailto:${c.email}` },
   ].filter(Boolean) as { icon: React.ReactNode; label: string; href: string }[]
   return (
     <section className="redsec section" id="contact">
       <h2 className="display huge" data-reveal>GOT A STORY?<br /><span className="brush-k">let's make it visual.</span></h2>
       <div className="contact-links">
         {links.length ? links.map((l) => (
-          <a key={l.href} className="btn btn-black" href={l.href} target="_blank" rel="noreferrer">{l.icon}{l.label}<ArrowUpRight size={18} /></a>
+          <a key={l.href} className="btn btn-black contact-btn" href={l.href} target="_blank" rel="noreferrer">
+            {l.icon}
+            <span className="contact-label brush-k">{l.label}</span>
+            <ArrowUpRight size={16} className="contact-arrow" />
+          </a>
         )) : <p className="todo-box">Contact links are not configured yet. Add your Instagram, WhatsApp, phone and email in <code>src/data/site.ts</code>.</p>}
       </div>
     </section>

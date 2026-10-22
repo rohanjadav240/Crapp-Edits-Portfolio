@@ -6,25 +6,25 @@ export type VideoSource = { type: 'youtube' | 'vimeo' | 'mp4'; src: string } // 
 
 export const site = {
   contact: {
-    instagram: '', // handle only, e.g. 'crappedits'
-    whatsapp: '',  // digits with country code, e.g. '919800000000'
-    phone: '',     // e.g. '+91 98000 00000'
-    email: '',     // e.g. 'hello@yourdomain.com'
+    instagram: 'crapp_edit',
+    whatsapp: '+919016086722',
+    phone: '+919016086722',
+    email: 'zubershaikh12815@gmail.com',
   },
   showreel: {
-    poster: '' as string,              // e.g. '/images/showreel-poster.jpg'
-    video: null as VideoSource | null, // e.g. { type: 'youtube', src: 'https://youtu.be/XXXXXXXXXXX' }
+    poster: '/images/poster.png' as string,              // e.g. '/images/showreel-poster.jpg'
+    video: { type: 'mp4', src: '/videos/4.mp4' } as VideoSource | null, // e.g. { type: 'youtube', src: 'https://youtu.be/XXXXXXXXXXX' }
   },
   about: {
-    owner: '',      // e.g. 'Founder name'
-    team: '',       // e.g. 'Shooters, editors, colourists'
-    location: '',   // e.g. 'Ahmedabad, India'
-    experience: '', // e.g. 'Years of experience'
+    owner: 'Shaikh Zuber',      // e.g. 'Founder name'
+    team: 'Crapp Team',       // e.g. 'Shooters, editors, colourists'
+    location: 'Vyara, Gujarat',   // e.g. 'Ahmedabad, India'
+    experience: '2+ Years', // e.g. 'Years of experience'
     approach: 'We shoot with the edit in mind and cut with the brand in mind, so every frame earns its place.',
   },
 }
 
-export const categories = ['Business Promotion', 'Product Videos', 'Food and Restaurant', 'Events', 'Fashion', 'Cinematic Reels'] as const
+export const categories = ['Business Promotion', 'Product Videos', 'Cinematic Reels', 'Events', 'Food and Restaurant', 'Fashion', 'Marketing', 'More...'] as const
 export type Category = (typeof categories)[number]
 
 export type Project = {
@@ -34,12 +34,51 @@ export type Project = {
 
 // Replace placeholders with real work. Set placeholder:false once genuine.
 export const projects: Project[] = [
-  { id: 'p1', title: 'Brand Story Film', category: 'Business Promotion', description: 'Placeholder — a brand film that introduces a business in under a minute.', placeholder: true },
-  { id: 'p2', title: 'Product Launch Reel', category: 'Product Videos', description: 'Placeholder — close-up product shots cut to rhythm.', placeholder: true },
-  { id: 'p3', title: 'Kitchen After Dark', category: 'Food and Restaurant', description: 'Placeholder — a restaurant promo built around texture and steam.', placeholder: true },
-  { id: 'p4', title: 'Event Highlights', category: 'Events', description: 'Placeholder — the best moments of a live event, delivered fast.', placeholder: true },
-  { id: 'p5', title: 'Lookbook in Motion', category: 'Fashion', description: 'Placeholder — a collection filmed like a short film.', placeholder: true },
-  { id: 'p6', title: 'Cinematic Cut', category: 'Cinematic Reels', description: 'Placeholder — a moody reel with color and sound design.', placeholder: true },
+  {
+    id: 'p1',
+    title: 'Food Stall Promotion',
+    category: 'Food and Restaurant',
+    description: 'A promotional food stall video.',
+    thumbnail: '/images/1.jpg',                   // Cover photo
+    video: { type: 'mp4', src: '/videos/1.mp4' }, // Your video file
+    placeholder: false,
+  },
+  {
+    id: 'p2',
+    title: 'Food Stall Promotion',
+    category: 'Food and Restaurant',
+    description: 'A promotional food stall video.',
+    thumbnail: '/images/2.jpg',                   // Cover photo
+    video: { type: 'mp4', src: '/videos/2.mp4' }, // Your video file
+    placeholder: false,
+  },
+  {
+    id: 'p3',
+    title: 'Cinematic Video',
+    category: 'Cinematic Reels',
+    description: 'A Gym Cinematic Video.',
+    thumbnail: '/images/3.jpg',                   // Cover photo
+    video: { type: 'mp4', src: '/videos/3.mp4' }, // Your video file
+    placeholder: false,
+  },
+  {
+    id: 'p4',
+    title: 'Cinematic Business Promotion',
+    category: 'Business Promotion',
+    description: 'Crapp Edits Egengy Promotion Reel.',
+    thumbnail: '/images/4.jpg',                   // Cover photo
+    video: { type: 'mp4', src: '/videos/4.mp4' }, // Your video file
+    placeholder: false,
+  },
+  {
+    id: 'p5',
+    title: 'Cafe Promotion',
+    category: 'Food and Restaurant',
+    description: 'A Cafe Cinamatic Promotional Reel.',
+    thumbnail: '/images/5.jpg',                   // Cover photo
+    video: { type: 'mp4', src: '/videos/5.mp4' }, // Your video file
+    placeholder: false,
+  }
 ]
 
 // Remove, reorder or edit any service.

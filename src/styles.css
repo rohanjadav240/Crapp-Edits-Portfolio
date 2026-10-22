@@ -445,24 +445,26 @@ button {
   height: 56px
 }
 
-/* portfolio */
 .filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 40px
+  gap: 8px;
+  margin-bottom: 32px
 }
 
 .chip {
-  padding: 10px 18px;
-  border: 2px solid var(--k);
+  padding: 6px 14px;
+  font-size: 12px;
+  letter-spacing: .02em;
+  border: 1.5px solid var(--k);
   font-family: 'Space Grotesk';
   font-weight: 700;
-  transition: background .2s, color .2s
+  transition: background .2s, color .2s, border-color .2s
 }
 
 .chip:hover {
-  border-color: var(--r);
+  background-color: var(--k);
+  color: var(--w)
 }
 
 .chip.on {
@@ -889,6 +891,16 @@ code {
   .services li,
   .about-grid {
     grid-template-columns: 1fr
+  }
+
+  .filters {
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .chip {
+    padding: 5px 11px;
+    font-size: 11px;
   }
 
   .grid {

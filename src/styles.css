@@ -322,7 +322,7 @@ button {
   right: 0;
   top: 0px;
   bottom: 0;
-  width: min(62%, 900px);
+  width: min(62%, 800px);
   z-index: 1
 }
 

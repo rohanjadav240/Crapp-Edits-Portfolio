@@ -473,28 +473,33 @@ button {
 
 .chip {
   padding: 6px 14px;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: .02em;
   border: 1.5px solid var(--k);
   font-family: 'Space Grotesk';
   font-weight: 700;
-  transition: background .2s, color .2s, border-color .2s
+  cursor: pointer;
+  transition: background .16s, color .16s, border-color .16s, transform .12s;
 }
 
 .chip:hover {
   background-color: var(--k);
-  color: var(--w)
+  color: var(--w);
+}
+
+.chip:active {
+  transform: scale(0.96);
 }
 
 .chip.on {
   background: var(--k);
-  color: var(--w)
+  color: var(--w);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
-  gap: 36px 28px
+  gap: 36px 28px;
 }
 
 .card {
@@ -503,7 +508,20 @@ button {
   gap: 8px;
   text-align: left;
   transform: perspective(900px) rotateX(var(--rx, 0)) rotateY(var(--ry, 0));
-  transition: transform .25s
+  transition: transform .2s ease-out;
+  animation: cardFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .thumb {

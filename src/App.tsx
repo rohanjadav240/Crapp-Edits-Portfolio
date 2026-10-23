@@ -21,10 +21,10 @@ export default function App() {
 
   useEffect(() => { document.body.style.overflow = intro ? 'hidden' : '' }, [intro])
 
-  /* ── Lenis smooth scroll ── */
+  /* ── Lenis smooth scroll with dynamic resize observer ── */
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.0,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       touchMultiplier: 1.5,
     })
@@ -32,10 +32,25 @@ export default function App() {
 
     // Sync Lenis with GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update)
-    gsap.ticker.add((time) => lenis.raf(time * 1000))
+    const onTick = (time: number) => lenis.raf(time * 1000)
+    gsap.ticker.add(onTick)
     gsap.ticker.lagSmoothing(0)
 
+    // Automatically recalculate scroll limits and refresh triggers when content height changes (e.g. portfolio category change)
+    let rafId: number
+    const ro = new ResizeObserver(() => {
+      lenis.resize()
+      cancelAnimationFrame(rafId)
+      rafId = requestAnimationFrame(() => {
+        ScrollTrigger.refresh()
+      })
+    })
+    ro.observe(document.body)
+
     return () => {
+      ro.disconnect()
+      cancelAnimationFrame(rafId)
+      gsap.ticker.remove(onTick)
       lenis.destroy()
       lenisRef.current = null
     }
@@ -55,13 +70,6 @@ export default function App() {
 
       // Process timeline line
       gsap.fromTo('.process-line', { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '.process-list', start: 'top 70%', end: 'bottom 70%', scrub: true } })
-
-      // Cards stagger reveal
-      gsap.utils.toArray<HTMLElement>('.card').forEach((el, i) =>
-        gsap.fromTo(el, { y: 60, opacity: 0, scale: 0.95 }, {
-          y: 0, opacity: 1, scale: 1, duration: 0.7, delay: (i % 3) * 0.1,
-          ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 92%' }
-        }))
 
       // Services list items
       gsap.utils.toArray<HTMLElement>('.services li').forEach((el, i) =>

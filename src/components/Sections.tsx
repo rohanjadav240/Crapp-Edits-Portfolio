@@ -20,7 +20,7 @@ export function Hero({ go }: { go: boolean }) {
           <span className="line"><span className="outline">IN EVERY</span></span>
           <span className="line"><span className="red">FRAME.</span></span>
         </h1>
-        <p className="lede">Cinematic visuals, creative editing, and promotional content for brands with a story to tell.</p>
+        <p className="lede">Cinematic visuals, creative editing, promotional content for brands with a story to tell.</p>
         <div className="btn-row">
           <a className="btn btn-red" href="#work">Explore our work</a>
           <a className="btn btn-ghost" href="#contact">Start a project</a>
@@ -51,7 +51,7 @@ export function Showreel({ open }: { open: (t: string, v?: VideoSource | null) =
   )
 }
 
-function Card({ p, i, open }: { p: Project; i: number; open: (t: string, v?: VideoSource | null) => void }) {
+function Card({ p, i, open, style }: { p: Project; i: number; open: (t: string, v?: VideoSource | null) => void; style?: React.CSSProperties }) {
   const ref = useRef<HTMLButtonElement>(null)
   const move = (e: React.PointerEvent) => {
     if (e.pointerType !== 'mouse' || !ref.current) return
@@ -61,7 +61,7 @@ function Card({ p, i, open }: { p: Project; i: number; open: (t: string, v?: Vid
   }
   const leave = () => { ref.current?.style.setProperty('--rx', '0deg'); ref.current?.style.setProperty('--ry', '0deg') }
   return (
-    <button ref={ref} className="card" onPointerMove={move} onPointerLeave={leave} onClick={() => open(p.title, p.video)} aria-label={`Open ${p.title}`}>
+    <button ref={ref} className="card" style={style} onPointerMove={move} onPointerLeave={leave} onClick={() => open(p.title, p.video)} aria-label={`Open ${p.title}`}>
       <span className="thumb">
         {p.thumbnail ? <img src={p.thumbnail} alt="" loading="lazy" /> : <span className="thumb-ph">{String(i + 1).padStart(2, '0')}</span>}
         {p.placeholder && <span className="tag">Placeholder</span>}
@@ -85,8 +85,8 @@ export function Portfolio({ open }: { open: (t: string, v?: VideoSource | null) 
           <button key={c} className={`chip ${filter === c ? 'on' : ''}`} aria-pressed={filter === c} onClick={() => setFilter(c)}>{c}</button>
         ))}
       </div>
-      <div className="grid">
-        {list.map((p, i) => <Card key={p.id} p={p} i={projects.indexOf(p) + 0 * i} open={open} />)}
+      <div className="grid" key={filter}>
+        {list.map((p, i) => <Card key={p.id} p={p} i={projects.indexOf(p)} open={open} style={{ animationDelay: `${Math.min(i, 8) * 0.035}s` }} />)}
         {!list.length && <p className="empty">Project is in work...</p>}
       </div>
     </section>

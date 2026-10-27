@@ -29,24 +29,49 @@ export function Hero({ go }: { go: boolean }) {
       {webgl ? <Suspense fallback={null}><Hero3D /></Suspense> : (
         <div className="hero3d fallback" aria-hidden="true"><i /><i /><i /></div>
       )}
+      <a href="#work" className="hero-scroll-cue" aria-label="Scroll to portfolio">
+        <span className="scroll-cue-txt">SCROLL TO EXPLORE</span>
+        <div className="scroll-cue-pill">
+          <span className="scroll-cue-wheel" />
+        </div>
+      </a>
     </section>
   )
 }
 
 export function Marquee() {
-  const t = 'SHOOT • EDIT • DELIVER • '.repeat(8)
-  return <div className="marquee" aria-hidden="true"><div><span>{t}</span><span>{t}</span></div></div>
+  const t1 = 'SHOOT • EDIT • DELIVER • COLOR GRADE • SOUND DESIGN • '.repeat(6)
+  const t2 = 'CINEMATIC VISUALS • VIRAL REELS • PACING & FLOW • 4K RENDER • '.repeat(6)
+  return (
+    <div className="marquee-wrapper" aria-hidden="true">
+      <div className="marquee marquee-primary">
+        <div className="marquee-track marquee-track-left">
+          <span>{t1}</span>
+          <span>{t1}</span>
+        </div>
+      </div>
+      <div className="marquee marquee-secondary">
+        <div className="marquee-track marquee-track-right">
+          <span>{t2}</span>
+          <span>{t2}</span>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export function Showreel({ open }: { open: (t: string, v?: VideoSource | null) => void }) {
   const { poster, video } = site.showreel
   return (
-    <section className="dark section" id="showreel">
+    <section className="dark section showreel-section" id="showreel">
+      <div className="showreel-ambient-glow" aria-hidden="true" />
       <h2 className="display h2" data-reveal>THE <span className="brush">showreel</span></h2>
-      <button className="reel" onClick={() => open('CRAPP EDITS Showreel', video)} aria-label="Play showreel">
-        {poster ? <img src={poster} alt="Showreel poster" loading="lazy" /> : <span className="reel-ph"><b>CRAPP</b><em>placeholder poster — add yours in site.ts</em></span>}
-        <span className="play"><Play size={34} fill="currentColor" /></span>
-      </button>
+      <div className="reel-container">
+        <button className="reel" onClick={() => open('CRAPP EDITS Showreel', video)} aria-label="Play showreel">
+          {poster ? <img src={poster} alt="Showreel poster" loading="lazy" /> : <span className="reel-ph"><b>CRAPP</b><em>placeholder poster — add yours in site.ts</em></span>}
+          <span className="play"><Play size={34} fill="currentColor" /></span>
+        </button>
+      </div>
     </section>
   )
 }
@@ -61,9 +86,9 @@ function Card({ p, i, open, style }: { p: Project; i: number; open: (t: string, 
   }
   const leave = () => { ref.current?.style.setProperty('--rx', '0deg'); ref.current?.style.setProperty('--ry', '0deg') }
   return (
-    <button ref={ref} className="card" style={style} onPointerMove={move} onPointerLeave={leave} onClick={() => open(p.title, p.video)} aria-label={`Open ${p.title}`}>
+    <button ref={ref} className="card" data-scroll-card style={style} onPointerMove={move} onPointerLeave={leave} onClick={() => open(p.title, p.video)} aria-label={`Open ${p.title}`}>
       <span className="thumb">
-        {p.thumbnail ? <img src={p.thumbnail} alt="" loading="lazy" /> : <span className="thumb-ph">{String(i + 1).padStart(2, '0')}</span>}
+        {p.thumbnail ? <img src={p.thumbnail} alt="" loading="lazy" className="thumb-img" /> : <span className="thumb-ph">{String(i + 1).padStart(2, '0')}</span>}
         {p.placeholder && <span className="tag">Placeholder</span>}
         <span className="play sm"><Play size={20} fill="currentColor" /></span>
       </span>
@@ -99,7 +124,11 @@ export function Services() {
       <h2 className="display h2" data-reveal>WHAT WE <span className="brush">make</span></h2>
       <ul className="services">
         {services.map((s) => (
-          <li key={s.title}><h3 className="display">{s.title}</h3><p>{s.text}</p></li>
+          <li key={s.title} className="service-item">
+            <h3 className="display">{s.title}</h3>
+            <p>{s.text}</p>
+            <span className="service-accent-bar" aria-hidden="true" />
+          </li>
         ))}
       </ul>
     </section>
@@ -111,9 +140,17 @@ export function Process() {
     <section className="dark section" id="process">
       <h2 className="display h2" data-reveal>HOW IT <span className="outline">WORKS</span></h2>
       <ol className="process-list">
-        <span className="process-line" aria-hidden="true" />
+        <span className="process-line" aria-hidden="true">
+          <span className="process-glow-node" />
+        </span>
         {process.map((s, i) => (
-          <li key={s.title}><span className="step-n">{i + 1}</span><div><h3 className="display">{s.title}</h3><p>{s.text}</p></div></li>
+          <li key={s.title} className="process-item">
+            <span className="step-n">{i + 1}</span>
+            <div className="step-body">
+              <h3 className="display">{s.title}</h3>
+              <p>{s.text}</p>
+            </div>
+          </li>
         ))}
       </ol>
     </section>
@@ -127,10 +164,10 @@ export function About() {
     <section className="light section about" id="about">
       <h2 className="display h2" data-reveal>ABOUT <Wordmark /></h2>
       <div className="about-grid">
-        <p className="about-lede">CRAPP EDITS is a video shooting, editing and promotional reel agency. {a.approach}</p>
+        <p className="about-lede" data-scroll-about>CRAPP EDITS is a video shooting, editing and promotional reel agency. {a.approach}</p>
         <dl className="facts">
           {facts.map(([k, v]) => (
-            <div key={k}><dt>{k}</dt><dd className={v ? '' : 'todo'}>{v || `Add in site.ts`}</dd></div>
+            <div key={k} className="fact-item"><dt>{k}</dt><dd className={v ? '' : 'todo'}>{v || `Add in site.ts`}</dd></div>
           ))}
         </dl>
       </div>
@@ -148,7 +185,7 @@ export function Contact() {
   ].filter(Boolean) as { icon: React.ReactNode; label: string; href: string }[]
   return (
     <section className="redsec section" id="contact">
-      <h2 className="display huge" data-reveal>GOT A STORY?<br /><span className="brush-k">let's make it visual.</span></h2>
+      <h2 className="display huge contact-title" data-reveal>GOT A STORY?<br /><span className="brush-k">let's make it visual.</span></h2>
       <div className="contact-links">
         {links.length ? links.map((l) => (
           <a key={l.href} className="btn btn-black contact-btn" href={l.href} target="_blank" rel="noreferrer">

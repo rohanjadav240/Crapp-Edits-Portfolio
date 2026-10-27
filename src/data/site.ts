@@ -17,7 +17,7 @@ export const site = {
   },
   about: {
     owner: 'Shaikh Zuber',      // e.g. 'Founder name'
-    team: 'Crapp Team',       // e.g. 'Shooters, editors, colourists'
+    team: 'Our Crapp Team',       // e.g. 'Shooters, editors, colourists'
     location: 'Vyara, Gujarat',   // e.g. 'Ahmedabad, India'
     experience: '2+ Years', // e.g. 'Years of experience'
     approach: 'We shoot with the edit in mind and cut with the brand in mind, so every frame earns its place.',

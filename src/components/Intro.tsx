@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
-import logo from '../assets/logo.jpg'
+import logo from '../assets/logo.jpeg'
 
 // Full logo reveal in a single transition without splitting into separate parts
 export function Intro({ onDone }: { onDone: () => void }) {
@@ -22,7 +22,7 @@ export function Intro({ onDone }: { onDone: () => void }) {
   return (
     <div className="intro" ref={root} role="presentation">
       <div className="intro-logo">
-        <img ref={imgRef} className="intro-logo-img" src={logo} alt="CRAPP EDITS" />
+        <img ref={imgRef} className="intro-logo-img" src={logo} alt="CRAPP MEDIA" />
       </div>
     </div>
   )

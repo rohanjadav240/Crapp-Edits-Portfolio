@@ -1,13 +1,13 @@
 import { lazy, Suspense, useRef, useState } from 'react'
 import { ArrowUpRight, Instagram, Mail, MessageCircle, Phone, Play } from 'lucide-react'
-import { categories, process, projects, services, site, type Project, type VideoSource } from '../data/site'
+import { categories, process, projects, site, type Project, type VideoSource } from '../data/site'
 import { VideoModal } from './VideoModal'
 
 const Hero3D = lazy(() => import('./Hero3D'))
 const hasWebGL = () => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')) } catch { return false } }
 
 export function Wordmark() {
-  return <span className="wordmark"><span className="wm-crapp">CRAPP</span><span className="wm-edits">EDITS</span></span>
+  return <span className="wordmark"><span className="wm-crapp">CRAPP</span><span className="wm-media">MEDIA</span></span>
 }
 
 export function Hero({ go }: { go: boolean }) {
@@ -29,34 +29,7 @@ export function Hero({ go }: { go: boolean }) {
       {webgl ? <Suspense fallback={null}><Hero3D /></Suspense> : (
         <div className="hero3d fallback" aria-hidden="true"><i /><i /><i /></div>
       )}
-      <a href="#work" className="hero-scroll-cue" aria-label="Scroll to portfolio">
-        <span className="scroll-cue-txt">SCROLL TO EXPLORE</span>
-        <div className="scroll-cue-pill">
-          <span className="scroll-cue-wheel" />
-        </div>
-      </a>
     </section>
-  )
-}
-
-export function Marquee() {
-  const t1 = 'SHOOT • EDIT • DELIVER • COLOR GRADE • SOUND DESIGN • '.repeat(6)
-  const t2 = 'CINEMATIC VISUALS • VIRAL REELS • PACING & FLOW • 4K RENDER • '.repeat(6)
-  return (
-    <div className="marquee-wrapper" aria-hidden="true">
-      <div className="marquee marquee-primary">
-        <div className="marquee-track marquee-track-left">
-          <span>{t1}</span>
-          <span>{t1}</span>
-        </div>
-      </div>
-      <div className="marquee marquee-secondary">
-        <div className="marquee-track marquee-track-right">
-          <span>{t2}</span>
-          <span>{t2}</span>
-        </div>
-      </div>
-    </div>
   )
 }
 
@@ -67,7 +40,7 @@ export function Showreel({ open }: { open: (t: string, v?: VideoSource | null) =
       <div className="showreel-ambient-glow" aria-hidden="true" />
       <h2 className="display h2" data-reveal>THE <span className="brush">showreel</span></h2>
       <div className="reel-container">
-        <button className="reel" onClick={() => open('CRAPP EDITS Showreel', video)} aria-label="Play showreel">
+        <button className="reel" onClick={() => open('CRAPP MEDIA Showreel', video)} aria-label="Play showreel">
           {poster ? <img src={poster} alt="Showreel poster" loading="lazy" /> : <span className="reel-ph"><b>CRAPP</b><em>placeholder poster — add yours in site.ts</em></span>}
           <span className="play"><Play size={34} fill="currentColor" /></span>
         </button>
@@ -104,7 +77,7 @@ export function Portfolio({ open }: { open: (t: string, v?: VideoSource | null) 
   const list = filter === 'All Projects' ? projects : projects.filter((p) => p.category === filter)
   return (
     <section className="light section" id="work">
-      <h2 className="display h2" data-reveal>SELECTED <span className="outline">WORK</span></h2>
+      <h2 className="display h2" data-reveal>OUR <span className="outline">SERVICES</span></h2>
       <div className="filters" role="group" aria-label="Filter projects">
         {['All Projects', ...categories].map((c) => (
           <button key={c} className={`chip ${filter === c ? 'on' : ''}`} aria-pressed={filter === c} onClick={() => setFilter(c)}>{c}</button>
@@ -118,27 +91,10 @@ export function Portfolio({ open }: { open: (t: string, v?: VideoSource | null) 
   )
 }
 
-export function Services() {
-  return (
-    <section className="gray section" id="services">
-      <h2 className="display h2" data-reveal>WHAT WE <span className="brush">make</span></h2>
-      <ul className="services">
-        {services.map((s) => (
-          <li key={s.title} className="service-item">
-            <h3 className="display">{s.title}</h3>
-            <p>{s.text}</p>
-            <span className="service-accent-bar" aria-hidden="true" />
-          </li>
-        ))}
-      </ul>
-    </section>
-  )
-}
-
 export function Process() {
   return (
     <section className="dark section" id="process">
-      <h2 className="display h2" data-reveal>HOW IT <span className="outline">WORKS</span></h2>
+      <h2 className="display h2" data-reveal>WHAT WE <span className="red" >DO</span></h2>
       <ol className="process-list">
         <span className="process-line" aria-hidden="true">
           <span className="process-glow-node" />
@@ -164,7 +120,7 @@ export function About() {
     <section className="light section about" id="about">
       <h2 className="display h2" data-reveal>ABOUT <Wordmark /></h2>
       <div className="about-grid">
-        <p className="about-lede" data-scroll-about>CRAPP EDITS is a video shooting, editing and promotional reel agency. {a.approach}</p>
+        <p className="about-lede" data-scroll-about>CRAPP MEDIA is a video shooting, editing and promotional reel agency. {a.approach}</p>
         <dl className="facts">
           {facts.map(([k, v]) => (
             <div key={k} className="fact-item"><dt>{k}</dt><dd className={v ? '' : 'todo'}>{v || `Add in site.ts`}</dd></div>

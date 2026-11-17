@@ -2,27 +2,25 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
-import { ArrowUp, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { Intro } from './components/Intro'
 import { VideoModal } from './components/VideoModal'
-import { About, Contact, Hero, Marquee, Portfolio, Process, Services, Showreel, Wordmark } from './components/Sections'
+import { About, Contact, Hero, Portfolio, Process, Showreel, Wordmark } from './components/Sections'
 import type { VideoSource } from './data/site'
 
 gsap.registerPlugin(ScrollTrigger)
-const links = [['Work', '#work'], ['Services', '#services'], ['Process', '#process'], ['About', '#about'], ['Contact', '#contact']]
+const links = [['Process', '#process'], ['Work', '#work'], ['About', '#about'], ['Contact', '#contact']]
 
 export default function App() {
   const [intro, setIntro] = useState(true)
   const [menu, setMenu] = useState(false)
   const [navScrolled, setNavScrolled] = useState(false)
-  const [showTopBtn, setShowTopBtn] = useState(false)
   const [modal, setModal] = useState<{ title: string; video?: VideoSource | null } | null>(null)
   
   const done = useCallback(() => setIntro(false), [])
   const open = useCallback((title: string, video?: VideoSource | null) => setModal({ title, video }), [])
   
   const lenisRef = useRef<Lenis | null>(null)
-  const progressBarRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => { document.body.style.overflow = intro ? 'hidden' : '' }, [intro])
 
@@ -40,24 +38,12 @@ export default function App() {
     })
     lenisRef.current = lenis
 
-    // Sync Lenis with GSAP ScrollTrigger & track progress
-    const handleScroll = (e: { progress?: number }) => {
+    // Sync Lenis with GSAP ScrollTrigger & track nav scroll
+    const handleScroll = () => {
       ScrollTrigger.update()
       
       const scrollY = window.scrollY || document.documentElement.scrollTop
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight
-      const progress = maxScroll > 0 ? THREE_lerp_progress(scrollY / maxScroll) : (e.progress ?? 0)
-      
-      if (progressBarRef.current) {
-        progressBarRef.current.style.transform = `scaleX(${progress})`
-      }
-      
       setNavScrolled(scrollY > 40)
-      setShowTopBtn(scrollY > 480)
-    }
-
-    function THREE_lerp_progress(p: number) {
-      return Math.max(0, Math.min(1, p))
     }
 
     lenis.on('scroll', handleScroll)
@@ -143,30 +129,7 @@ export default function App() {
         }
       })
 
-      // 3. Dual-track Marquee Counter-Scroll Parallax
-      gsap.to('.marquee-track-left', {
-        x: '-=320',
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.marquee-wrapper',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1,
-        }
-      })
-
-      gsap.to('.marquee-track-right', {
-        x: '+=320',
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.marquee-wrapper',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1,
-        }
-      })
-
-      // 4. Showreel Cinematic Expand & Ambient Glow
+      // 3. Showreel Cinematic Expand & Ambient Glow
       gsap.fromTo(
         '.reel-container',
         { scale: 0.88, y: 60, opacity: 0.8 },
@@ -237,41 +200,7 @@ export default function App() {
         }
       })
 
-      // 6. Services list items interactive slide & accent lines
-      gsap.utils.toArray<HTMLElement>('.service-item').forEach((el, i) => {
-        gsap.fromTo(
-          el,
-          { x: -50, opacity: 0 },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 0.75,
-            delay: i * 0.05,
-            ease: 'power3.out',
-            scrollTrigger: { trigger: el, start: 'top 88%' }
-          }
-        )
-
-        const bar = el.querySelector('.service-accent-bar')
-        if (bar) {
-          gsap.fromTo(
-            bar,
-            { scaleX: 0 },
-            {
-              scaleX: 1,
-              ease: 'power2.out',
-              scrollTrigger: {
-                trigger: el,
-                start: 'top 85%',
-                end: 'top 50%',
-                scrub: 0.4,
-              }
-            }
-          )
-        }
-      })
-
-      // 7. Process Timeline Line & Step nodes illumination
+      // 5. Process Timeline Line & Step nodes illumination
       gsap.fromTo(
         '.process-line',
         { scaleY: 0 },
@@ -410,27 +339,12 @@ export default function App() {
     setMenu(false)
   }, [])
 
-  /* ── Smooth Scroll-to-top ── */
-  const scrollToTop = useCallback(() => {
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, {
-        duration: 1.4,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-      })
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-  }, [])
-
   return (
     <>
       {intro && <Intro onDone={done} />}
-      
-      {/* Top scroll progress indicator line */}
-      <div ref={progressBarRef} className="scroll-progress-bar" aria-hidden="true" />
 
       <header className={`nav ${navScrolled ? 'nav-scrolled' : ''}`}>
-        <a href="#top" onClick={handleAnchor} aria-label="CRAPP EDITS home"><Wordmark /></a>
+        <a href="#top" onClick={handleAnchor} aria-label="CRAPP MEDIA home"><Wordmark /></a>
         <button className="icon-btn burger" onClick={() => setMenu(!menu)} aria-expanded={menu} aria-label="Toggle menu">{menu ? <X /> : <Menu />}</button>
         <nav className={menu ? 'open' : ''} aria-label="Main">
           {links.map(([l, h]) => <a key={h} href={h} onClick={handleAnchor}>{l}</a>)}
@@ -439,26 +353,14 @@ export default function App() {
 
       <main>
         <Hero go={!intro} />
-        <Marquee />
+        <Process />
         <Showreel open={open} />
         <Portfolio open={open} />
-        <Services />
-        <Process />
         <About />
         <Contact />
       </main>
 
-      <footer className="foot"><Wordmark /><span>© {new Date().getFullYear()} CRAPP EDITS</span></footer>
-      
-      {/* Floating Smooth Back-to-Top Button */}
-      <button
-        className={`back-to-top ${showTopBtn ? 'visible' : ''}`}
-        onClick={scrollToTop}
-        aria-label="Scroll back to top"
-      >
-        <ArrowUp size={18} />
-        <span>TOP</span>
-      </button>
+      <footer className="foot"><Wordmark /><span>© {new Date().getFullYear()} CRAPP MEDIA</span></footer>
 
       <VideoModal open={!!modal} title={modal?.title ?? ''} video={modal?.video} onClose={() => setModal(null)} />
     </>

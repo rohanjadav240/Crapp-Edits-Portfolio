@@ -34,67 +34,61 @@ export type Project = {
 
 // Replace placeholders with real work. Set placeholder:false once genuine.
 export const projects: Project[] = [
-  {
+   {
     id: 'p1',
-    title: 'Food Stall Promotion',
-    category: 'Food and Restaurant',
-    description: 'A promotional food stall video.',
-    thumbnail: '/images/1.jpg',                   // Cover photo
-    video: { type: 'mp4', src: '/videos/1.mp4' }, // Your video file
-    placeholder: false,
-  },
-  {
-    id: 'p2',
-    title: 'Food Stall Promotion',
-    category: 'Food and Restaurant',
-    description: 'A promotional food stall video.',
-    thumbnail: '/images/2.jpg',                   // Cover photo
-    video: { type: 'mp4', src: '/videos/2.mp4' }, // Your video file
-    placeholder: false,
-  },
-  {
-    id: 'p3',
-    title: 'Cinematic Video',
-    category: 'Cinematic Reels',
-    description: 'A Gym Cinematic Video.',
-    thumbnail: '/images/3.jpg',                   // Cover photo
-    video: { type: 'mp4', src: '/videos/3.mp4' }, // Your video file
-    placeholder: false,
-  },
-  {
-    id: 'p4',
-    title: 'Cinematic Business Promotion',
-    category: 'Business Promotion',
-    description: 'Crapp Edits Egengy Promotion Reel.',
-    thumbnail: '/images/4.jpg',                   // Cover photo
-    video: { type: 'mp4', src: '/videos/4.mp4' }, // Your video file
-    placeholder: false,
-  },
-  {
-    id: 'p5',
     title: 'Cafe Promotion',
     category: 'Food and Restaurant',
     description: 'A Cafe Cinamatic Promotional Reel.',
     thumbnail: '/images/5.jpg',                   // Cover photo
     video: { type: 'mp4', src: '/videos/5.mp4' }, // Your video file
     placeholder: false,
+  },
+  {
+    id: 'p2',
+    title: 'About Us',
+    category: 'Business Promotion',
+    description: 'Crapp Media Egengy Promotion Reel.',
+    thumbnail: '/images/4.jpg',                   // Cover photo
+    video: { type: 'mp4', src: '/videos/4.mp4' }, // Your video file
+    placeholder: false,
+  },
+  {
+    id: 'p3',
+    title: 'Opening Shoot',
+    category: 'Events',
+    description: 'Shop Opening Shoot.',
+    thumbnail: '/images/6.jpeg',                   // Cover photo
+    video: { type: 'mp4', src: '/videos/6.mp4' }, // Your video file
+    placeholder: false,
+  },
+   {
+    id: 'p4',
+    title: 'Cinematic Video',
+    category: 'Cinematic Reels',
+    description: 'A Gym Cinematic Video.',
+    thumbnail: '/images/3.jpg',                   // Cover photo
+    video: { type: 'mp4', src: '/videos/3.mp4' }, // Your video file
+    placeholder: false,
   }
 ]
 
-// Remove, reorder or edit any service.
-export const services = [
-  { title: 'Professional Video Shooting', text: 'Planned, lit and framed for the final cut.' },
-  { title: 'Creative Video Editing', text: 'Pacing, sound and color that hold attention.' },
-  { title: 'Promotional Reels', text: 'Vertical-first edits made to be shared.' },
-  { title: 'Product Videography', text: 'Detail shots that make products desirable.' },
-  { title: 'Business and Brand Videos', text: 'Your story, told clearly and on-brand.' },
-  { title: 'Event Highlights', text: 'The energy of the day in a tight edit.' },
-]
-
 export const process = [
-  { title: 'Discover', text: 'We learn your brand, audience and goal.' },
-  { title: 'Plan', text: 'Concept, shot list and schedule, agreed up front.' },
-  { title: 'Shoot', text: 'Camera, light and direction on location or in studio.' },
-  { title: 'Edit', text: 'Story, rhythm, color and sound come together.' },
-  { title: 'Deliver', text: 'Final files in every format you need.' },
+  { title: 'Video Production', text: 'We learn your brand, audience and goal.' },
+  { title: 'Professional Video Editing', text: 'Concept, shot list and schedule, agreed up front.' },
+  { title: 'Anchor & Promotional Reels', text: 'Camera, light and direction on location or in studio.' },
+  { title: 'Car Delivery Shoot', text: 'Story, rhythm, color and sound come together.' },
+  { title: 'Event Shoot', text: 'Final files in every format you need.' },
+  { title: 'Shop Opening Shoot', text: 'Final files in every format you need.' },
+  { title: 'Social Media Marketing', text: 'We learn your brand, audience and goal.' },
+  { title: 'Brand & Business Promotion', text: 'Concept, shot list and schedule, agreed up front.' },
+  { title: 'Creative Content Creation', text: 'Camera, light and direction on location or in studio.' },
+  { title: 'Paid Ads & Digital Campaigns', text: 'Story, rhythm, color and sound come together.' },
+  { title: 'Behind The Scenes Production', text: 'Final files in every format you need.' },
 ]
+// export const process = [
+//   { title: 'Discover', text: 'We learn your brand, audience and goal.' },
+//   { title: 'Plan', text: 'Concept, shot list and schedule, agreed up front.' },
+//   { title: 'Shoot', text: 'Camera, light and direction on location or in studio.' },
+//   { title: 'Edit', text: 'Story, rhythm, color and sound come together.' },
+//   { title: 'Deliver', text: 'Final files in every format you need.' },
+// ]

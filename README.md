@@ -1,4 +1,4 @@
-# CRAPP EDITS — Portfolio
+# CRAPP MEDIA — Portfolio
 
 React + Vite + TypeScript + React Three Fiber + GSAP + Framer Motion.
 

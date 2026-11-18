@@ -352,9 +352,9 @@ export default function App() {
       </header>
 
       <main>
-        <Hero go={!intro} />
-        <Process />
+        <Hero go={!intro} open={open} />
         <Showreel open={open} />
+        <Process />
         <Portfolio open={open} />
         <About />
         <Contact />

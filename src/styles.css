@@ -957,6 +957,11 @@ code {
   font-size: 14px
 }
 
+/* mobile-only hero showreel (hidden on desktop) */
+.hero-mobile-reel {
+  display: none;
+}
+
 /* ══════════════════════════════════════════════
    MOBILE / PHONE RESPONSIVE
    ══════════════════════════════════════════════ */
@@ -994,8 +999,8 @@ code {
     align-items: center;
     justify-content: flex-start;
     text-align: center;
-    padding: 90px var(--pad) 0;
-    min-height: 100svh;
+    padding: 85px var(--pad) 28px;
+    min-height: auto;
     gap: 0;
   }
 
@@ -1004,6 +1009,28 @@ code {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  /* ── showreel directly inside hero on mobile (fills empty space) ── */
+  .hero-mobile-reel {
+    display: block;
+    width: 100%;
+    max-width: 440px;
+    margin-top: 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-mobile-reel .reel {
+    width: 100%;
+    border-radius: 12px;
+    border: 2px solid var(--k);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+  }
+
+  /* Hide separate showreel section on mobile since it is inside the hero */
+  .showreel-section {
+    display: none;
   }
 
   .hero-title {

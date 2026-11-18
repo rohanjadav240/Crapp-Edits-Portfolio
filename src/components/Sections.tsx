@@ -10,15 +10,16 @@ export function Wordmark() {
   return <span className="wordmark"><span className="wm-crapp">CRAPP</span><span className="wm-media">MEDIA</span></span>
 }
 
-export function Hero({ go }: { go: boolean }) {
+export function Hero({ go, open }: { go: boolean; open?: (t: string, v?: VideoSource | null) => void }) {
   const [webgl] = useState(hasWebGL)
+  const { poster, video } = site.showreel
   return (
     <section className={`hero light ${go ? 'go' : ''}`} id="top">
       <div className="hero-copy">
         <h1 className="display hero-title" aria-label="Creativity in every frame.">
-          <span className="line"><span>CREATIVITY</span></span>
-          <span className="line"><span className="outline">IN EVERY</span></span>
-          <span className="line"><span className="red">FRAME.</span></span>
+          <span className="line"><span>WE MAKE</span></span>
+          <span className="line"><span className="outline">BRAND IMPOSSIBLE</span></span>
+          <span className="line"><span className="red">TO IGNORE</span></span>
         </h1>
         <p className="lede">Cinematic visuals, creative editing, promotional content for brands with a story to tell.</p>
         <div className="btn-row">
@@ -26,6 +27,15 @@ export function Hero({ go }: { go: boolean }) {
           <a className="btn btn-ghost" href="#contact">Start a project</a>
         </div>
       </div>
+
+      {/* Mobile-only Showreel filling the empty hero space */}
+      <div className="hero-mobile-reel" aria-label="Showreel">
+        <button className="reel" onClick={() => open?.('CRAPP MEDIA Showreel', video)} aria-label="Play showreel">
+          {poster ? <img src={poster} alt="Showreel poster" loading="lazy" /> : <span className="reel-ph"><b>CRAPP</b><em>placeholder poster — add yours in site.ts</em></span>}
+          <span className="play"><Play size={30} fill="currentColor" /></span>
+        </button>
+      </div>
+
       {webgl ? <Suspense fallback={null}><Hero3D /></Suspense> : (
         <div className="hero3d fallback" aria-hidden="true"><i /><i /><i /></div>
       )}

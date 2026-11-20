@@ -21,7 +21,7 @@ export function Hero({ go, open }: { go: boolean; open?: (t: string, v?: VideoSo
           <span className="line"><span className="outline">BRAND IMPOSSIBLE</span></span>
           <span className="line"><span className="red">TO IGNORE</span></span>
         </h1>
-        <p className="lede">Cinematic visuals, creative editing, promotional content for brands with a story to tell.</p>
+        <p className="lede">Creating cinematic visuals and compelling stories that elevate your brand identity.</p>
         <div className="btn-row">
           <a className="btn btn-red" href="#work">Explore our work</a>
           <a className="btn btn-ghost" href="#contact">Start a project</a>
@@ -113,7 +113,7 @@ export function Process() {
           <li key={s.title} className="process-item">
             <span className="step-n">{i + 1}</span>
             <div className="step-body">
-              <h3 className="display">{s.title}</h3>
+              <h2 className="display">{s.title}</h2>
               <p>{s.text}</p>
             </div>
           </li>
@@ -151,14 +151,14 @@ export function Contact() {
   ].filter(Boolean) as { icon: React.ReactNode; label: string; href: string }[]
   return (
     <section className="redsec section" id="contact">
-      <h2 className="display huge contact-title" data-reveal>GOT A STORY?<br /><span className="brush-k">let's make it visual.</span></h2>
+      <h2 className="display huge contact-title" data-reveal>GOT A VISION?<br /><span className="contact-accent">let's make it REAL...</span></h2>
       <div className="contact-links">
         {links.length ? links.map((l) => (
           <a key={l.href} className="btn btn-black contact-btn" href={l.href} target="_blank" rel="noreferrer">
             {l.icon}
-            <span className="contact-label brush-k">{l.label}</span>
+            <span className="contact-label">{l.label}</span>
             <ArrowUpRight size={16} className="contact-arrow" />
-          </a>
+          </a>  
         )) : <p className="todo-box">Contact links are not configured yet. Add your Instagram, WhatsApp, phone and email in <code>src/data/site.ts</code>.</p>}
       </div>
     </section>

@@ -129,24 +129,7 @@ export default function App() {
         }
       })
 
-      // 3. Showreel Cinematic Expand & Ambient Glow
-      gsap.fromTo(
-        '.reel-container',
-        { scale: 0.88, y: 60, opacity: 0.8 },
-        {
-          scale: 1,
-          y: 0,
-          opacity: 1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '#showreel',
-            start: 'top 80%',
-            end: 'top 20%',
-            scrub: 0.8,
-          }
-        }
-      )
-
+      // 3. Showreel ambient glow
       gsap.fromTo(
         '.showreel-ambient-glow',
         { scale: 0.7, opacity: 0.1 },
@@ -163,7 +146,7 @@ export default function App() {
         }
       )
 
-      // 5. Portfolio cards scroll entrance & image parallax
+      // 5. Portfolio card scroll entrance
       gsap.utils.toArray<HTMLElement>('[data-scroll-card]').forEach((card) => {
         gsap.fromTo(
           card,
@@ -180,24 +163,6 @@ export default function App() {
             }
           }
         )
-
-        const img = card.querySelector('.thumb-img')
-        if (img) {
-          gsap.fromTo(
-            img,
-            { yPercent: -6 },
-            {
-              yPercent: 6,
-              ease: 'none',
-              scrollTrigger: {
-                trigger: card,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: true,
-              }
-            }
-          )
-        }
       })
 
       // 5. Process Timeline Line & Step nodes illumination

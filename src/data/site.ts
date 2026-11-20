@@ -12,14 +12,14 @@ export const site = {
     email: 'zubershaikh12815@gmail.com',
   },
   showreel: {
-    poster: '/images/poster.png' as string,              // e.g. '/images/showreel-poster.jpg'
+    poster: '/images/poster.jpeg' as string,              // e.g. '/images/showreel-poster.jpg'
     video: { type: 'mp4', src: '/videos/4.mp4' } as VideoSource | null, // e.g. { type: 'youtube', src: 'https://youtu.be/XXXXXXXXXXX' }
   },
   about: {
     owner: 'Shaikh Zuber',      // e.g. 'Founder name'
     team: 'Our Crapp Team',       // e.g. 'Shooters, editors, colourists'
     location: 'Vyara, Gujarat',   // e.g. 'Ahmedabad, India'
-    experience: '2+ Years', // e.g. 'Years of experience'
+    experience: '4+ Years', // e.g. 'Years of experience'
     approach: 'We shoot with the edit in mind and cut with the brand in mind, so every frame earns its place.',
   },
 }
@@ -38,7 +38,7 @@ export const projects: Project[] = [
     id: 'p1',
     title: 'Cafe Promotion',
     category: 'Food and Restaurant',
-    description: 'A Cafe Cinamatic Promotional Reel.',
+    description: 'Cafe Promotional Reel.',
     thumbnail: '/images/5.jpg',                   // Cover photo
     video: { type: 'mp4', src: '/videos/5.mp4' }, // Your video file
     placeholder: false,
@@ -47,7 +47,7 @@ export const projects: Project[] = [
     id: 'p2',
     title: 'About Us',
     category: 'Business Promotion',
-    description: 'Crapp Media Egengy Promotion Reel.',
+    description: 'Crapp Media Egengy.',
     thumbnail: '/images/4.jpg',                   // Cover photo
     video: { type: 'mp4', src: '/videos/4.mp4' }, // Your video file
     placeholder: false,
@@ -73,18 +73,52 @@ export const projects: Project[] = [
 ]
 
 export const process = [
-  { title: 'Video Production', text: 'We learn your brand, audience and goal.' },
-  { title: 'Professional Video Editing', text: 'Concept, shot list and schedule, agreed up front.' },
-  { title: 'Anchor & Promotional Reels', text: 'Camera, light and direction on location or in studio.' },
-  { title: 'Car Delivery Shoot', text: 'Story, rhythm, color and sound come together.' },
-  { title: 'Event Shoot', text: 'Final files in every format you need.' },
-  { title: 'Shop Opening Shoot', text: 'Final files in every format you need.' },
-  { title: 'Social Media Marketing', text: 'We learn your brand, audience and goal.' },
-  { title: 'Brand & Business Promotion', text: 'Concept, shot list and schedule, agreed up front.' },
-  { title: 'Creative Content Creation', text: 'Camera, light and direction on location or in studio.' },
-  { title: 'Paid Ads & Digital Campaigns', text: 'Story, rhythm, color and sound come together.' },
-  { title: 'Behind The Scenes Production', text: 'Final files in every format you need.' },
-]
+  {
+    title: 'Video Production',
+    text: 'Turning creative ideas into reality.'
+  },
+  {
+    title: 'Professional Video Editing',
+    text: 'Creating cinematic stories with style.'
+  },
+  {
+    title: 'Anchor & Promotional Reels',
+    text: 'Promoting brands through reels.'
+  },
+  {
+    title: 'Car Delivery Shoot',
+    text: 'Capturing memorable delivery moment.'
+  },
+  {
+    title: 'Event Shoot',
+    text: 'Capturing memories that last forever.'
+  },
+  {
+    title: 'Shop Opening Shoot',
+    text: 'Making grand openings truly memorable.'
+  },
+  {
+    title: 'Social Media Marketing',
+    text: 'Growing brands through strategic social.'
+  },
+  {
+    title: 'Brand & Business Promotion',
+    text: 'Building brands & Creative promotion.'
+  },
+  {
+    title: 'Creative Content Creation',
+    text: 'Creating content that captures attention.'
+  },
+  {
+    title: 'Paid Ads & Digital Campaigns',
+    text: 'Boosting brands through targeted ads.'
+  },
+  {
+    title: 'Behind The Scenes Production',
+    text: 'Showing magic behind every production.'
+  }
+];
+
 // export const process = [
 //   { title: 'Discover', text: 'We learn your brand, audience and goal.' },
 //   { title: 'Plan', text: 'Concept, shot list and schedule, agreed up front.' },

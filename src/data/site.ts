@@ -6,7 +6,7 @@ export type VideoSource = { type: 'youtube' | 'vimeo' | 'mp4'; src: string } // 
 
 export const site = {
   contact: {
-    instagram: 'crapp_edit',
+    instagram: 'crapp_media',
     whatsapp: '+919016086722',
     phone: '+919016086722',
     email: 'zubershaikh12815@gmail.com',
@@ -45,11 +45,12 @@ export const projects: Project[] = [
   },
   {
     id: 'p2',
-    title: 'About Us',
+    title: 'Shop Promotion',
     category: 'Business Promotion',
-    description: 'Crapp Media Egengy.',
-    thumbnail: '/images/4.jpg',                   // Cover photo
-    video: { type: 'mp4', src: '/videos/4.mp4' }, // Your video file
+    description: 'Clothes Shop Promotion.',
+
+    thumbnail: '/images/2.jpg',                   // Cover photo
+    video: { type: 'mp4', src: '/videos/2.mp4' }, // Your video file
     placeholder: false,
   },
   {
